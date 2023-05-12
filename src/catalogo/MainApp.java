@@ -33,7 +33,7 @@ public class MainApp {
         Catalogo catalogo1 = new Catalogo();
 
         Libro libro = new Libro("ISBN456", "Titolo Libro", 2023, 200, "Autore Libro", "Genere Libro");
-        catalogo1.aggiungiLibro(libro);
+        catalogo.aggiungiLibro(libro);
 
         try {
             catalogo.salvaCatalogoSuDisco();
