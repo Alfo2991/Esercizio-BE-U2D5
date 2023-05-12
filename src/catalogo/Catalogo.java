@@ -20,6 +20,7 @@ public class Catalogo {
     public void aggiungiLibro(Libro libro) {
         listaLibri.add(libro);
     }
+    
 
     public void aggiungiRivista(Rivista rivista) {
         listaRiviste.add(rivista);

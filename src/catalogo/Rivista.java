@@ -1,5 +1,8 @@
 package catalogo;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Rivista extends ElementoCatalogo {
     private String periodicita;
 
@@ -15,16 +18,33 @@ public class Rivista extends ElementoCatalogo {
     @Override
     public String toString() {
         return super.toString() +
-               ", Periodicità: " + periodicita;
+                ", Periodicità: " + periodicita;
     }
 
-	@Override
-	public String getAutore() {
-		return null;
-	}
+    @Override
+    public String getAutore() {
+        return null;
+    }
 
-	@Override
-	public String getIsbn() {
-		return null;
-	}
+    @Override
+    public String getIsbn() {
+        return null;
+    }
+
+    @Override
+    public void scriviSuFile(BufferedWriter writer) throws IOException {
+        writer.write("Tipo: Rivista");
+        writer.newLine();
+        writer.write("Codice ISBN: " + getCodiceISBN());
+        writer.newLine();
+        writer.write("Titolo: " + getTitolo());
+        writer.newLine();
+        writer.write("Anno di pubblicazione: " + getAnnoPubblicazione());
+        writer.newLine();
+        writer.write("Numero di pagine: " + getNumeroPagine());
+        writer.newLine();
+        writer.write("Periodicità: " + periodicita);
+        writer.newLine();
+        writer.newLine();
+    }
 }

@@ -1,5 +1,9 @@
 package catalogo;
 
+import java.io.IOException;
+import java.io.File;
+
+
 public class MainApp {
     public static void main(String[] args) {
         Libro libro1 = new Libro("5225525255252", "Il nome della rosa", 1900, 300, "Umberto Eco", "Romanzo");
@@ -22,8 +26,38 @@ public class MainApp {
         System.out.println("Risultati ricerca per autore: " + autoreRicerca);
         catalogo.cercaLibro(libro -> libro.getAutore().equals(autoreRicerca)).forEach(System.out::println);
 
-        int annoRicerca = 2021;
+        int annoRicerca = 2022;
         System.out.println("Risultati ricerca per anno di pubblicazione: " + annoRicerca);
         catalogo.cercaRivista(rivista -> rivista.getAnnoPubblicazione() == annoRicerca).forEach(System.out::println);
-    }
+        
+        Catalogo catalogo1 = new Catalogo();
+
+        Libro libro = new Libro("ISBN456", "Titolo Libro", 2023, 200, "Autore Libro", "Genere Libro");
+        catalogo1.aggiungiLibro(libro);
+
+        try {
+            catalogo.salvaCatalogoSuDisco();
+            System.out.println("Catalogo salvato correttamente su disco.");
+        } catch (IOException e) {
+            System.out.println("Si è verificato un errore durante il salvataggio del catalogo su disco.");
+            e.printStackTrace();
+        }
+        File fileLibri = new File("libri.txt");
+        File fileRiviste = new File("riviste.txt");
+
+        if (fileLibri.exists() && fileLibri.canWrite()) {
+            System.out.println("Il file libri.txt esiste ed è accessibile in scrittura.");
+        } else {
+            System.out.println("Il file libri.txt non esiste o non è accessibile in scrittura.");
+        }
+
+        if (fileRiviste.exists() && fileRiviste.canWrite()) {
+            System.out.println("Il file riviste.txt esiste ed è accessibile in scrittura.");
+        } else {
+            System.out.println("Il file riviste.txt non esiste o non è accessibile in scrittura.");
+        }
 }
+}
+
+    
+
